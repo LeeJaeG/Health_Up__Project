@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <link rel="stylesheet" th:href="@{/css/base.css}" />
+ <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="layout/header::header"/>
+<div class="container">
+        <div class="page-header">
+            <h1>게시글 목록</h1>
+        </div>
+        <br/>
+        <div class="pull-right" style="width:100px;margin: 10px 0;">
+        	<a href="/board/form" class="btn btn-primary btn-block">등록</a>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div id="mainHide">
+        	<table class="table table-hover">
+        		<thead>
+        			<tr>
+        				<th scope="col">#</th>
+        				<th scope="col">서비스 분류</th>
+        				<th scope="col">제목</th>
+        				<th scope="col">부제목</th>
+        				<th scope="col">작성일</th>
+        			</tr>
+        		</thead>
+        		<tbody> 
+        		
+        			<tr th:each="board:${boardList}" th:if="${#strings.equals(board.boardType,'free')}">
+        				<td th:text="${board.id}"></td>
+        				<td th:text="${board.boardType}"></td>
+        				<td><a th:href="'/board/?id='+${board.id}" th:text="${board.title}"></a></td>
+        				<td th:text="${board.subTitle}"></td>
+        				<td th:text="${board.wdate}"></td>
+        			</tr>
+        			
+        		</tbody>
+        	</table>
+        </div>
+        <br/>
+        <!-- 페이지 네비게이션    
+        ===><span th:text="${T(java.lang.Math).floor(7/2)}">123</span>
+             -->
+        
+        <nav aria-label="Page navigation" style="text-align:center;">
+			<ul class="pagination" th:with="startNumber=${T(java.lang.Math).floor(boardList.number/5)}*5+1, endNumber=(${boardList.totalPages} > ${startNumber}+4) ? ${startNumber}+4 : ${boardList.totalPages}">
+			<li><a aria-label="Previous" href="/board/list?page=1">«</a></li>
+			<li th:style="${boardList.first} ? 'display:none'">
+			<a th:href="@{/board/list(page=${boardList.number})}">‹</a>
+			</li>
+			<li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number}+1) ? 'active'">
+			<a th:href="@{/board/list(page=${page})}" th:text="${page}"><span class="sr-only"></span></a>
+			</li>
+			​<li th:style="${boardList.last} ? 'display:none'">
+			<a th:href="@{/board/list(page=${boardList.number}+2)}">›</a>
+			</li> 
+			<li><a aria-label="Next" th:href="@{/board/list(page=${boardList.totalPages})}">»</a></li>
+			</ul>
+		</nav>
+		<!-- /Pagination -->
+</div>
+<div th:replace="layout/footer::footer"></div>
+</body>
+</html>

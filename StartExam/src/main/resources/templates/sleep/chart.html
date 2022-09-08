@@ -1,0 +1,28 @@
+<canvas id="myChart" style="width:100%; max-width:600px"></canvas>
+
+<script th:inline="javascript">
+
+var xValues = [[${chart1}]];
+var yValues = [[${chart2}]];
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 0, max:3000}}],
+    }
+  }
+});
+
+</script>
