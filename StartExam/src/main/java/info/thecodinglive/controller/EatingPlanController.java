@@ -45,7 +45,6 @@ import info.thecodinglive.service.BoardService;
 import info.thecodinglive.service.EatingService;
 
 @Controller
-@RequestMapping("/eating")
 public class EatingPlanController {
 	@Autowired
 	EatingPlanRepository eatingPlanRepository;
@@ -111,5 +110,62 @@ public class EatingPlanController {
 
 		return "eating/list";
 	}
+
+
+//	@GetMapping("/form")
+//	public String eatForm() {
+//
+//		return "eating/eatingForm";
+//
+//	}
+//
+//	@GetMapping("/chart")
+//	public String eatChart(Model model) {
+//
+//		Query query = em.createQuery(
+//				"select date_format(createDate,'%Y%m%d') AS date,sum(kcal) AS kcal from EatingPlanData WHERE user_username=123 GROUP BY date"
+//		// "SELECT eid,e_content,selectMeal,date_format(createDate,'%Y%m%d') AS
+//		// createDate,sum(kcal) AS kcal FROM Eatingplandata WHERE user_username=123
+//		// GROUP BY createDate"
+//		);
+//
+//		List resultList = query.getResultList();
+//		List r1 = new ArrayList();
+//		List r2 = new ArrayList();
+//		System.out.println(resultList);
+//
+//		for (Object data : resultList) {
+//			Object[] result = (Object[]) data;
+//			r1.add(result[0]);
+//			r2.add(result[1]);
+//
+//		}
+//
+//		model.addAttribute("chart1", r1);
+//		model.addAttribute("chart2", r2);
+//		return "eating/chart";
+//
+//	}
+//
+//	@PostMapping("/insert")
+//	@ResponseBody
+//	public ResponseEntity<EatingPlanData> postEating(Principal principal, @RequestBody EatingPlanData eatingPlanData) {
+//		System.out.println("post request");
+//		System.out.println(eatingPlanData.toString());
+//		User user = userRepository.findByUsername(principal.getName());
+//		eatingPlanData.setUser(user);
+//		eatingPlanRepository.save(eatingPlanData);
+//		return new ResponseEntity<EatingPlanData>(eatingPlanData, HttpStatus.CREATED);
+//
+//	}
+//
+//	@GetMapping("/list")
+//	public String getList(Model model,
+//			@PageableDefault(size = Integer.MAX_VALUE, sort = "eid", direction = Sort.Direction.DESC) Pageable pageable) {
+//
+//		model.addAttribute("boardList", eatingService.findEatingList(pageable));
+//
+//		return "eating/list";
+//	}
 
 }
