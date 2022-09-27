@@ -27,6 +27,8 @@ public class User {
 private String name;
 private int age;
 private String tel;
+private int plankcal;
+private int datacount;
 @Id
 private String username;
 private String password;

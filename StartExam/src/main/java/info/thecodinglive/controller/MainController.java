@@ -26,6 +26,10 @@ public class MainController {
 	public String home() {
 		return "loginForm";
 	}
+	@GetMapping("/go")
+	public String home1() {
+		return "main";
+	}
 
 	@GetMapping("/user")
 	public @ResponseBody String user() {
