@@ -1,0 +1,10 @@
+
+
+<div th:each="board:${boardList}">
+	<span th:text="${board.eid}"></span> <span
+		th:text="${board.createDate}"></span> <span
+		th:text="${board.e_content}"></span> <span th:text="${board.kcal}"></span>
+	<span th:text="${board.selectMeal}"></span>
+	<span th:text="${board.user.username}"></span>
+</div>
+
