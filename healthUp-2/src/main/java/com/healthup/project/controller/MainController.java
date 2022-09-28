@@ -19,7 +19,7 @@ public class MainController {
 	KakaoAPI kakaoapi = new KakaoAPI();
 	
 	@GetMapping("/")
-	public String home1() {
+	public String home1(HttpSession session) {
 		return "main";
 	}
 	

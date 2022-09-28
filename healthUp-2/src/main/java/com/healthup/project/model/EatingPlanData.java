@@ -36,9 +36,8 @@ private String selectMeal; //간식
 private int kcal;
 private String e_content;
 
-@OneToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)//
-@JsonIgnore
-private User user;
+
+private String email;
 
 @CreationTimestamp
 @DateTimeFormat

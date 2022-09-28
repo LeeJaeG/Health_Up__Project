@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,10 +55,10 @@ public class EatingPlanController {
 	}
 
 	@GetMapping("/chart")
-	public String eatChart(Model model) {
+	public String eatChart(Model model,@PageableDefault(size = Integer.MAX_VALUE, sort = "eid", direction = Sort.Direction.DESC) Pageable pageable) {
 
 		Query query = em.createQuery(
-				"select date_format(createDate,'%Y%m%d') AS date,sum(kcal) AS kcal from EatingPlanData WHERE user_username=123 GROUP BY date"
+				"select date_format(createDate,'%Y%m%d') AS date,sum(kcal) AS kcal from EatingPlanData WHERE email='wlrmworms@naver.com' GROUP BY date"
 		// "SELECT eid,e_content,selectMeal,date_format(createDate,'%Y%m%d') AS
 		// createDate,sum(kcal) AS kcal FROM Eatingplandata WHERE user_username=123
 		// GROUP BY createDate"
@@ -75,31 +76,33 @@ public class EatingPlanController {
 
 		}
 
-		model.addAttribute("chart1", r1);
-		model.addAttribute("chart2", r2);
+		model.addAttribute("date", r1);
+		model.addAttribute("kcal", r2);
+		model.addAttribute("eatingList", eatingService.findEatingList(pageable));
 		return "eating/chart";
 
 	}
 
+//	@GetMapping("/list")
+//	public String getList(Model model,
+//			@PageableDefault(size = Integer.MAX_VALUE, sort = "eid", direction = Sort.Direction.DESC) Pageable pageable) {
+//
+//		model.addAttribute("eatingList", eatingService.findEatingList(pageable));
+//
+//		return "eating/list";
+//	}
+	
 	@PostMapping("/insert")
 	@ResponseBody
-	public ResponseEntity<EatingPlanData> postEating(Principal principal, @RequestBody EatingPlanData eatingPlanData) {
+	public ResponseEntity<EatingPlanData> postEating(HttpSession session, @RequestBody EatingPlanData eatingPlanData) {
 		System.out.println("post request");
 		System.out.println(eatingPlanData.toString());
-		User user = userRepository.findByUsername(principal.getName());
-		eatingPlanData.setUser(user);
+		String email = (String) session.getAttribute("userId");
+		eatingPlanData.setEmail(email);
 		eatingPlanRepository.save(eatingPlanData);
+		
 		return new ResponseEntity<EatingPlanData>(eatingPlanData, HttpStatus.CREATED);
 
-	}
-
-	@GetMapping("/list")
-	public String getList(Model model,
-			@PageableDefault(size = Integer.MAX_VALUE, sort = "eid", direction = Sort.Direction.DESC) Pageable pageable) {
-
-		model.addAttribute("eatingList", eatingService.findEatingList(pageable));
-
-		return "eating/list";
 	}
 
 }

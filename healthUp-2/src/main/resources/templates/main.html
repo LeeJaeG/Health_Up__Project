@@ -89,7 +89,7 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">식사관리</a> <a
-									class="nav-link" href="layout-sidenav-light.html">체형변화</a>
+									class="nav-link" id="chart">체형변화</a>
 							</nav>
 						</div>
 
@@ -135,8 +135,8 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="https://kauth.kakao.com/oauth/authorize?client_id=c9b16843d33552a6691e25491df4d4a1&redirect_uri=http://localhost:9999/login&response_type=code">Login</a>
-										<a class="nav-link" href="https://kauth.kakao.com/oauth/logout?client_id=c9b16843d33552a6691e25491df4d4a1&logout_redirect_uri=http://localhost:9999/logout">Logout</a>
+										<a class="nav-link" href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://localhost:9999/login&response_type=code">Login</a>
+										<a class="nav-link" href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://localhost:9999/logout">Logout</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -177,6 +177,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
+			<div id="result">
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">Dashboard</h1>
 					<ol class="breadcrumb mb-4">
@@ -284,6 +285,7 @@
 						</div>
 
 					</div>
+</div>
 
 					<div class="row"></div>
 
@@ -300,6 +302,7 @@
 						</div>
 					</div>
 				</div>
+				
 			</footer>
 		</div>
 	</div>
@@ -409,6 +412,33 @@
 			});
 
 		});
+	</script>
+	
+	<script>
+		$('#chart').click(function() {
+			
+			$.ajax({
+				url : "http://localhost:9999/eating/chart",
+				//data : meg,
+				type : "get",
+
+				success : function(recvdata) {
+					$('#result').html(recvdata);
+				}
+			})
+		});
+		
+//		$('#chart').click(function() {
+//			$.ajax({
+//				url : "http://localhost:9999/eating/list",
+//				//data : meg,
+//				type : "get",
+//				success : function(recvdata) {
+//					//alert(recvdata)
+//					$('#result').html(recvdata);
+//				}
+//			})
+//			});
 	</script>
 
 </body>
