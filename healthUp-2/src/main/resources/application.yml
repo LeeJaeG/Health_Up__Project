@@ -11,9 +11,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://127.0.0.1:3306/healthup?serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://mydb.cgy5aje4sfth.ap-northeast-2.rds.amazonaws.com:3306/healthup?serverTimezone=Asia/Seoul
     username: root
-    password: 1234
+    password: 12345678
 
   jpa:
     hibernate:
