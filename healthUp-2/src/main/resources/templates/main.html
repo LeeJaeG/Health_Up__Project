@@ -362,7 +362,7 @@
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://localhost:9999/eating/insert",
+				url : "http://3.35.205.76:9999/eating/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -394,7 +394,7 @@
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://3.35.205.76:9999/sleep/insert",
+				url : "http://localhost:9999/sleep/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -418,7 +418,7 @@
 		$('#chart').click(function() {
 			
 			$.ajax({
-				url : "http://3.35.205.76:9999/eating/chart",
+				url : "http://localhost:9999/eating/chart",
 				//data : meg,
 				type : "get",
 
