@@ -35,6 +35,9 @@ private long eid;
 private String selectMeal; //간식
 private int kcal;
 private String e_content;
+private String tan;
+private String dan;
+private String ji;
 
 
 private String email;

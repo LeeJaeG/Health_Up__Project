@@ -104,5 +104,10 @@ public class SleepController {
 
 		return "sleep/list";
 	}
+	
+	@GetMapping("/youtube")
+	public String get() {
+		return "sleep/data";
+	}
 
 }

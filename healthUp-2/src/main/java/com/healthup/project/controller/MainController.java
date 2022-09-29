@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,17 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.healthup.project.service.KakaoAPI;
 
-
 @Controller
 public class MainController {
 
 	KakaoAPI kakaoapi = new KakaoAPI();
-	
+
 	@GetMapping("/")
-	public String home1(HttpSession session) {
+	public String main1(Model model, HttpSession session) {
+
+		model.addAttribute("userId", session.getAttribute("userId"));
+
 		return "main";
 	}
-	
+
 	// 카카오로그인
 	@RequestMapping(value = "/login")
 	public ModelAndView login(@RequestParam("code") String code, HttpSession session) {
@@ -46,7 +49,7 @@ public class MainController {
 		System.out.println("----------Token" + accessToken);
 
 		mav.addObject("userId", userInfo.get("email"));
-		
+
 		mav.setViewName("main");
 		return mav;
 	}

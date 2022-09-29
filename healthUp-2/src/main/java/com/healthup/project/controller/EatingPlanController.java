@@ -50,7 +50,7 @@ public class EatingPlanController {
 	@GetMapping("/form")
 	public String eatForm() {
 
-		return "eating/eatingForm";
+		return "eating";
 
 	}
 

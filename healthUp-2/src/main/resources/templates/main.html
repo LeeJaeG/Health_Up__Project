@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,23 +18,12 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="index.html">Health-Up</a>
+		<a class="navbar-brand ps-3" href="http://localhost:9999/">Health-Up</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
 			<i class="fas fa-bars"></i>
 		</button>
-		<!-- Navbar Search-->
-		<form
-			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
-					<i class="fas fa-search"></i>
-				</button>
-			</div>
-		</form>
 		<!-- Navbar-->
 		<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
 			<li class="nav-item dropdown"><a
@@ -70,7 +59,6 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">운동일지</a> <a
-									class="nav-link" href="layout-sidenav-light.html">운동추천</a> <a
 									class="nav-link" href="layout-static.html">홈트레이닝</a> <a
 									class="nav-link" href="layout-sidenav-light.html">스트레칭</a>
 							</nav>
@@ -88,8 +76,7 @@
 						<div class="collapse" id="collapseEating"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">식사관리</a> <a
-									class="nav-link" id="chart">체형변화</a>
+								<a class="nav-link" id="chart">체형변화</a>
 							</nav>
 						</div>
 
@@ -106,16 +93,14 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">수면일지</a> <a
-									class="nav-link" href="layout-sidenav-light.html">수면도움</a>
+									class="nav-link" id="sleepyoutube">수면도움</a>
 							</nav>
 						</div>
 
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-book-open"></i>
-							</div> Pages
+							<div class="sb-nav-link-icon"></div> 회원
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -135,8 +120,10 @@
 									aria-labelledby="headingOne"
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://localhost:9999/login&response_type=code">Login</a>
-										<a class="nav-link" href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://localhost:9999/logout">Logout</a>
+										<a class="nav-link"
+											href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://localhost:9999/login&response_type=code">Login</a>
+										<a class="nav-link"
+											href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://localhost:9999/logout">Logout</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
@@ -177,115 +164,146 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-			<div id="result">
-				<div class="container-fluid px-4">
-					<h1 class="mt-4">Dashboard</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">Dashboard</li>
-					</ol>
-					<div class="row">
-						<div class="col-lg-4 col-md-6">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h4 class="card-title">운동 입력</h4>
+				<div id="result">
+					<div class="container-fluid px-4">
+						<h1 class="mt-4">Dashboard</h1>
+						<ol class="breadcrumb mb-4">
+							<li class="breadcrumb-item active">Dashboard</li>
+						</ol>
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h4 class="card-title">운동 입력</h4>
 
-									<div class="form-group">
-										<label for="u_name"> WorkOutTitle </label> <input type="text"
-											class="form-control" placeholder="운동명 입력" id="wd_title"
-											name="wd_title" required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">운동명을 입력해 주세요.</div>
-										<br>
+										<div class="form-group">
+											<label for="u_name"> WorkOutTitle </label> <input type="text"
+												class="form-control" placeholder="운동명 입력" id="wd_title"
+												name="wd_title" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">운동명을 입력해 주세요.</div>
+											<br>
+										</div>
+
+										<div class="form-group">
+											<label for="u_name"> WorkOutContent </label> <input
+												type="text" class="form-control" placeholder="운동내용 입력"
+												id="wd_content" name="wd_content" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">운동내용을 입력해 주세요.</div>
+											<br>
+										</div>
+
+										<div class="form-group">
+											<label for="u_name"> TotalWeight </label> <input type="text"
+												class="form-control" placeholder="운동량 입력" id="wo_kg"
+												name="wo_kg" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">운동량을 입력해 주세요.</div>
+											<br>
+										</div>
+
+										<input type="button" class="btn btn-primary" id="winsert"
+											value="입력">
+
 									</div>
-
-									<div class="form-group">
-										<label for="u_name"> WorkOutContent </label> <input
-											type="text" class="form-control" placeholder="운동내용 입력"
-											id="wd_content" name="wd_content" required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">운동내용을 입력해 주세요.</div>
-										<br>
-									</div>
-
-									<div class="form-group">
-										<label for="u_name"> TotalWeight </label> <input type="text"
-											class="form-control" placeholder="운동량 입력" id="wo_kg"
-											name="wo_kg" required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">운동량을 입력해 주세요.</div>
-										<br>
-									</div>
-									<input type="button" class="btn btn-primary" id="winsert" value="입력">
-
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h4 class="card-title">식사 입력</h4>
-									<div class="form-group">
-										<label>식사선택</label><br> <input type="radio"
-											name="selectMeal" id="selectMeal" value="brf">아침 <input
-											type="radio" name="selectMeal" id="selectMeal" value="lun">점심
-										<input type="radio" name="selectMeal" id="selectMeal"
-											value="din">저녁
-									</div>
-									<br>
-
-									<div class="form-group">
-										<label for="u_name"> EatingContent </label> <input type="text"
-											class="form-control" placeholder="식단 입력" id="e_content"
-											name="e_content" required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">식단을 입력해 주세요.</div>
+							<div class="col-lg-4 col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h4 class="card-title">식사 입력</h4>
+										<div class="form-group">
+											<label>식사선택</label><br> <input type="radio"
+												name="selectMeal" id="selectMeal" value="brf">아침 <input
+												type="radio" name="selectMeal" id="selectMeal" value="lun">점심
+											<input type="radio" name="selectMeal" id="selectMeal"
+												value="din">저녁
+										</div>
 										<br>
-									</div>
 
-									<div class="form-group">
-										<label for="u_name"> EatingKcal </label> <input type="text"
-											class="form-control" placeholder="총칼로리 입력" id="kcal"
-											name="kcal" required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">총칼로리를 입력해 주세요.</div>
-										<br>
-									</div>
+										<div class="form-group">
+											<label for="u_name"> EatingContent </label> <input
+												type="text" class="form-control" placeholder="식단 입력"
+												id="e_content" name="e_content" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">식단을 입력해 주세요.</div>
+											<br>
+										</div>
 
-									<input type="button" class="btn btn-primary" id="einsert" value="입력">
+										<div class="form-group">
+											<label for="u_name"> EatingKcal </label> <input type="text"
+												class="form-control" placeholder="총칼로리 입력" id="kcal"
+												name="kcal" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">총칼로리를 입력해 주세요.</div>
+											<br>
+										</div>
+										
+										<div class="form-group">
+											<label for="tan"> Carbohydrate </label> <input type="text"
+												class="form-control" placeholder="총칼로리 입력" id="tan"
+												name="tan" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">총칼로리를 입력해 주세요.</div>
+											<br>
+										</div>
+										
+										<div class="form-group">
+											<label for="dan"> Protein </label> <input type="text"
+												class="form-control" placeholder="총칼로리 입력" id="dan"
+												name="dan" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">총칼로리를 입력해 주세요.</div>
+											<br>
+										</div>
+										
+										<div class="form-group">
+											<label for="ji"> Fat </label> <input type="text"
+												class="form-control" placeholder="총칼로리 입력" id="ji"
+												name="ji" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">총칼로리를 입력해 주세요.</div>
+											<br>
+										</div>
+
+										<input type="button" class="btn btn-primary" id="einsert"
+											value="입력">
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="card mb-3">
-								<div class="card-body">
-									<h4 class="card-title">수면 입력</h4>
+							<div class="col-lg-4 col-md-6">
+								<div class="card mb-3">
+									<div class="card-body">
+										<h4 class="card-title">수면 입력</h4>
 
-									<div class="form-group">
-										<label for="u_name"> StartSleep </label> <input
-											type="datetime-local" class="form-control"
-											placeholder="수면 시작 시간 입력" id="toDate" name="toDate" required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">수면 시작 시간을 입력해 주세요.</div>
-										<br>
+										<div class="form-group">
+											<label for="u_name"> StartSleep </label> <input
+												type="datetime-local" class="form-control"
+												placeholder="수면 시작 시간 입력" id="toDate" name="toDate" required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">수면 시작 시간을 입력해 주세요.</div>
+											<br>
+										</div>
+
+										<div class="form-group">
+											<label for="u_name"> EndSleep </label> <input
+												type="datetime-local" class="form-control"
+												placeholder="수면 끝난 시간 입력" id="fromDate" name="fromDate"
+												required>
+											<div class="valid-feedback"></div>
+											<div class="invalid-feedback">수면 끝난 시간을 입력해 주세요.</div>
+											<br>
+										</div>
+
+										<input type="button" class="btn btn-primary" id="sinsert"
+											value="입력">
 									</div>
-
-									<div class="form-group">
-										<label for="u_name"> EndSleep </label> <input
-											type="datetime-local" class="form-control"
-											placeholder="수면 끝난 시간 입력" id="fromDate" name="fromDate"
-											required>
-										<div class="valid-feedback"></div>
-										<div class="invalid-feedback">수면 끝난 시간을 입력해 주세요.</div>
-										<br>
-									</div>
-
-									<input type="button" class="btn btn-primary" id="sinsert" value="입력">
 								</div>
 							</div>
-						</div>
 
+						</div>
 					</div>
-</div>
 
 					<div class="row"></div>
 
@@ -302,7 +320,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</footer>
 		</div>
 	</div>
@@ -348,11 +366,8 @@
 			});
 
 		});
-		
-		
 	</script>
 	<script>
-		
 		$('#einsert').click(function() {
 			var jsonData = JSON.stringify({
 
@@ -362,7 +377,7 @@
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://3.35.205.76:9999/eating/insert",
+				url : "http://localhost:9999/eating/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -380,11 +395,8 @@
 			});
 
 		});
-		
-		
 	</script>
 	<script>
-		
 		$('#sinsert').click(function() {
 			var jsonData = JSON.stringify({
 
@@ -413,10 +425,10 @@
 
 		});
 	</script>
-	
+
 	<script>
 		$('#chart').click(function() {
-			
+
 			$.ajax({
 				url : "http://localhost:9999/eating/chart",
 				//data : meg,
@@ -427,18 +439,45 @@
 				}
 			})
 		});
-		
-//		$('#chart').click(function() {
-//			$.ajax({
-//				url : "http://localhost:9999/eating/list",
-//				//data : meg,
-//				type : "get",
-//				success : function(recvdata) {
-//					//alert(recvdata)
-//					$('#result').html(recvdata);
-//				}
-//			})
-//			});
+
+		//		$('#chart').click(function() {
+		//			$.ajax({
+		//				url : "http://localhost:9999/eating/list",
+		//				//data : meg,
+		//				type : "get",
+		//				success : function(recvdata) {
+		//					//alert(recvdata)
+		//					$('#result').html(recvdata);
+		//				}
+		//			})
+		//			});
+	</script>
+
+	<script>
+		$('#sleepyoutube').click(function() {
+
+			$.ajax({
+				url : "http://localhost:9999/sleep/youtube",
+				//data : meg,
+				type : "get",
+
+				success : function(recvdata) {
+					$('#result').html(recvdata);
+				}
+			})
+		});
+
+		//		$('#chart').click(function() {
+		//			$.ajax({
+		//				url : "http://localhost:9999/eating/list",
+		//				//data : meg,
+		//				type : "get",
+		//				success : function(recvdata) {
+		//					//alert(recvdata)
+		//					$('#result').html(recvdata);
+		//				}
+		//			})
+		//			});
 	</script>
 
 </body>
