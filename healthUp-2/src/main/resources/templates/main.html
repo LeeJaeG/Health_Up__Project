@@ -44,10 +44,10 @@ body {
 					aria-labelledby="navbarDropdown">
 					<li><a class="dropdown-item" href="#!">Settings</a></li>
 					<li th:if="${userId==null}"><a  class="dropdown-item"
-						href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://healthup.shop:9999/login&response_type=code">Login</a>
+						href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://healthup.shop/login&response_type=code">Login</a>
 					</li>
 					<li  th:if="${userId!=null}"><a class="dropdown-item"
-						href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://healthup.shop:9999/logout">Logout</a>
+						href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://healthup.shop/logout">Logout</a>
 					</li>
 
 				</ul></li>
@@ -135,9 +135,9 @@ body {
 									data-bs-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
 										<a class="nav-link"
-											href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://healthup.shop:9999/login&response_type=code">Login</a>
+											href="https://kauth.kakao.com/oauth/authorize?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&redirect_uri=http://healthup.shop/login&response_type=code">Login</a>
 										<a class="nav-link"
-											href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://healthup.shop:9999/logout">Logout</a>
+											href="https://kauth.kakao.com/oauth/logout?client_id=6e6dc22a169f98a227b09f8e3f8ea9e7&logout_redirect_uri=http://healthup.shop/logout">Logout</a>
 									</nav>
 								</div>
 
@@ -347,7 +347,7 @@ body {
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://healthup.shop:9999/workout/insert",
+				url : "http://healthup.shop/workout/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -376,7 +376,7 @@ body {
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://healthup.shop:9999/eating/insert",
+				url : "http://healthup.shop/eating/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -405,7 +405,7 @@ body {
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://healthup.shop:9999/sleep/insert",
+				url : "http://healthup.shop/sleep/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -429,7 +429,7 @@ body {
 		$('#chart').click(function() {
 
 			$.ajax({
-				url : "http://healthup.shop:9999/eating/chart",
+				url : "http://healthup.shop/eating/chart",
 				//data : meg,
 				type : "get",
 
@@ -456,7 +456,7 @@ body {
 		$('#sleepyoutube').click(function() {
 
 			$.ajax({
-				url : "http://healthup.shop:9999/sleep/youtube",
+				url : "http://healthup.shop/sleep/youtube",
 				//data : meg,
 				type : "get",
 
@@ -482,7 +482,7 @@ body {
 		$('#workoutyoutube').click(function() {
 
 			$.ajax({
-				url : "http://healthup.shop:9999/workout/youtube",
+				url : "http://healthup.shop/workout/youtube",
 				//data : meg,
 				type : "get",
 
@@ -498,7 +498,7 @@ body {
 		$('#workoutchart').click(function() {
 
 			$.ajax({
-				url : "http://healthup.shop:9999/workout/chart",
+				url : "http://healthup.shop/workout/chart",
 				//data : meg,
 				type : "get",
 
@@ -525,7 +525,7 @@ body {
 		$('#sleepchart').click(function() {
 
 			$.ajax({
-				url : "http://healthup.shop:9999/sleep/chart",
+				url : "http://healthup.shop/sleep/chart",
 				//data : meg,
 				type : "get",
 

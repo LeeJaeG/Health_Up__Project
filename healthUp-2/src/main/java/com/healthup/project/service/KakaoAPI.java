@@ -31,7 +31,7 @@ public class KakaoAPI {
          StringBuilder sb = new StringBuilder();
          sb.append("grant_type=authorization_code");
          sb.append("&client_id=6e6dc22a169f98a227b09f8e3f8ea9e7");
-         sb.append("&redirect_uri=http://healthup.shop:9999/login");
+         sb.append("&redirect_uri=http://healthup.shop/login");
          sb.append("&code="+code);
          
          bw.write(sb.toString());
