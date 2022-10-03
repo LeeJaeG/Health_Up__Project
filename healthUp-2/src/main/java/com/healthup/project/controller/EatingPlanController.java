@@ -55,10 +55,14 @@ public class EatingPlanController {
 	}
 
 	@GetMapping("/chart")
-	public String eatChart(Model model,@PageableDefault(size = Integer.MAX_VALUE, sort = "eid", direction = Sort.Direction.DESC) Pageable pageable) {
+	public String eatChart(HttpSession session,Model model,@PageableDefault(size = Integer.MAX_VALUE, sort = "eid", direction = Sort.Direction.DESC) Pageable pageable) {
 
+		String email = (String) session.getAttribute("userId");
+		String que = "select date_format(createDate,'%Y%m%d') AS date,sum(kcal) AS kcal from EatingPlanData WHERE email='"+email+"' GROUP BY date ORDER BY date ASC";
+		
+		
 		Query query = em.createQuery(
-				"select date_format(createDate,'%Y%m%d') AS date,sum(kcal) AS kcal from EatingPlanData WHERE email='wlrmworms@naver.com' GROUP BY date"
+				que
 		// "SELECT eid,e_content,selectMeal,date_format(createDate,'%Y%m%d') AS
 		// createDate,sum(kcal) AS kcal FROM Eatingplandata WHERE user_username=123
 		// GROUP BY createDate"

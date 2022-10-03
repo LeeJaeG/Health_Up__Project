@@ -47,21 +47,17 @@ public class Board implements Serializable {
 		wdate = new Date();
 	}
 
-	@OneToOne(fetch=FetchType.LAZY)//
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private User user;
+	private String email;
 	
 	@Builder
-	public Board(String title, String subTitle, String content, BoardType boardType, Date wdate,
-			User user) {
+	public Board(String title, String subTitle, String content, BoardType boardType, Date wdate) {
 		super();
 		this.title = title;
 		this.subTitle = subTitle;
 		this.content = content;
 		this.boardType = boardType;
 		this.wdate= wdate;
-		this.user = user;
+	
 	}
 	
 	public Board() {

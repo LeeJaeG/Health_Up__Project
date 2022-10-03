@@ -39,9 +39,7 @@ private double body_fat;
 @DateTimeFormat(pattern = "yyyy/MM/dd HH")
 private Timestamp createDate;
 
-@OneToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)//
-@JsonIgnore
-private User user;
+private String email;
 
 //치팅데이 넣기 날짜관련
 //

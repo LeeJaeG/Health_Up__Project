@@ -1,0 +1,42 @@
+
+<div class="container-fluid px-4">
+
+	<div class="card mb-4">
+		<div class="card-header">
+			<i class="fas fa-table me-1"></i> DataTable Example
+		</div>
+		<div class="card-body">
+			<table id="datatablesSimple">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>식사</th>
+						<th>칼로리</th>
+						<th>식사내용</th>
+						<th>날짜</th>
+
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>ID</th>
+						<th>식사</th>
+						<th>칼로리</th>
+						<th>식사내용</th>
+						<th>날짜</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr th:each="eating:${eatingList}">
+						<td th:text="${eating.eid}">Donna Snider</td>
+						<td th:text="${eating.selectMeal}">Customer Support</td>
+						<td th:text="${eating.kcal}">New York</td>
+						<td th:text="${eating.e_content}">27</td>
+						<td th:text="${eating.createDate}">2011/01/25</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

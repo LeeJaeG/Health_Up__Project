@@ -1,5 +1,6 @@
 package com.healthup.project.model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -26,15 +27,13 @@ import lombok.Data;
 public class WorkOutData {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private long w_id;
+private long wid;
 private int wo_kg;
 private String wd_title;
 private String wd_content;
 //운동시간 저장
 @CreationTimestamp
-private Timestamp createDate;
+private Date createDate;
 
-@OneToOne(fetch=FetchType.LAZY,cascade = CascadeType.ALL)//
-@JsonIgnore
-private User user;
+private String email;
 }

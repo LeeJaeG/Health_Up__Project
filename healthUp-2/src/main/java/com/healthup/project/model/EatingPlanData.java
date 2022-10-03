@@ -43,7 +43,7 @@ private String ji;
 private String email;
 
 @CreationTimestamp
-@DateTimeFormat
+@DateTimeFormat(pattern = "yyyy/MM/dd")
 private Date createDate;
 //추가기능 : 수분량 기준치 2L
 

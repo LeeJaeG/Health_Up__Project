@@ -30,12 +30,13 @@ public class SleepData {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long sid;
 
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH")
-	private Date toDate;
-	@DateTimeFormat(pattern = "yyyy/MM/dd HH")
-	private Date fromDate;
+	private Timestamp toDate;
 	
-	@OneToOne(fetch=FetchType.LAZY)//
-	@JsonIgnore
-	private User user;
+	private Timestamp fromDate;
+	
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH/mm")
+	private Date createDate;
+	
+	private String email;
 }

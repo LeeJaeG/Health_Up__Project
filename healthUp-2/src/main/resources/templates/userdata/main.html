@@ -72,9 +72,9 @@ body {
 						<div class="collapse" id="collapseWorkOut"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" id="workoutchart">운동일지</a> <a
+								<a class="nav-link" href="layout-static.html">운동일지</a> <a
 									class="nav-link" href="layout-static.html">홈트레이닝</a> <a
-									class="nav-link" id="workoutyoutube">스트레칭</a>
+									class="nav-link" href="layout-sidenav-light.html">스트레칭</a>
 							</nav>
 						</div>
 
@@ -106,7 +106,7 @@ body {
 						<div class="collapse" id="collapseSleep"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" id="sleepchart">수면일지</a> <a
+								<a class="nav-link" href="layout-static.html">수면일지</a> <a
 									class="nav-link" id="sleepyoutube">수면도움</a>
 							</nav>
 						</div>
@@ -144,8 +144,8 @@ body {
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">etc</div>
-						<a class="nav-link" href="#">
-							<div class="sb-nav-link-icon"></div> ads
+						<a class="nav-link" href="charts.html">
+							<div class="sb-nav-link-icon"></div> Charts
 						</a> <a class="nav-link" id="iamportPayment">
 							<div class="sb-nav-link-icon"></div> Donation
 						</a>
@@ -341,13 +341,13 @@ body {
 		$('#winsert').click(function() {
 			var jsonData = JSON.stringify({
 
-				wo_kg : $('#wo_kg').val(),
-				wd_content : $('#wd_content').val(),
-				wd_title : $('#wd_title').val()
+				selectMeal : $('input:radio[name="selectMeal"]:checked').val(),
+				e_content : $('#e_content').val(),
+				kcal : $('#kcal').val()
 			});
 			alert(jsonData);
 			$.ajax({
-				url : "http://localhost:9999/workout/insert",
+				url : "http://localhost:9999/sleep/insert",
 				type : "POST",
 				data : jsonData,
 				contentType : "application/json",
@@ -477,78 +477,7 @@ body {
 		//				}
 		//			})
 		//			});
-		
-		
-		$('#workoutyoutube').click(function() {
-
-			$.ajax({
-				url : "http://localhost:9999/workout/youtube",
-				//data : meg,
-				type : "get",
-
-				success : function(recvdata) {
-					$('#result').html(recvdata);
-				}
-			})
-		});
-
 	</script>
-	
-	<script>
-		$('#workoutchart').click(function() {
-
-			$.ajax({
-				url : "http://localhost:9999/workout/chart",
-				//data : meg,
-				type : "get",
-
-				success : function(recvdata) {
-					$('#result').html(recvdata);
-				}
-			})
-		});
-
-		//		$('#chart').click(function() {
-		//			$.ajax({
-		//				url : "http://localhost:9999/eating/list",
-		//				//data : meg,
-		//				type : "get",
-		//				success : function(recvdata) {
-		//					//alert(recvdata)
-		//					$('#result').html(recvdata);
-		//				}
-		//			})
-		//			});
-	</script>
-	
-	<script>
-		$('#sleepchart').click(function() {
-
-			$.ajax({
-				url : "http://localhost:9999/sleep/chart",
-				//data : meg,
-				type : "get",
-
-				success : function(recvdata) {
-					$('#result').html(recvdata);
-				}
-			})
-		});
-
-		//		$('#chart').click(function() {
-		//			$.ajax({
-		//				url : "http://localhost:9999/eating/list",
-		//				//data : meg,
-		//				type : "get",
-		//				success : function(recvdata) {
-		//					//alert(recvdata)
-		//					$('#result').html(recvdata);
-		//				}
-		//			})
-		//			});
-	</script>
-	
-	
 	<script type="text/javascript"
 		src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
@@ -567,7 +496,7 @@ body {
 				pg : "html5_inicis", //html5_inicis pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
 				pay_method : "card", //지불 방법
 				merchant_uid : Math.random(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-				name : "HealthUp", //결제창에 노출될 상품명
+				name : "KiKaz", //결제창에 노출될 상품명
 				amount : 100, //금액
 				buyer_name : "123",
 				buyer_tel : "123"
@@ -595,6 +524,7 @@ body {
 			});
 		}
 	</script>
+
 
 </body>
 </html>

@@ -1,6 +1,5 @@
 package com.healthup.project.controller;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,21 +31,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.healthup.project.model.SleepData;
 import com.healthup.project.model.User;
+import com.healthup.project.model.WorkOutData;
 import com.healthup.project.repository.SleepDataRepository;
 import com.healthup.project.repository.UserRepository;
+import com.healthup.project.repository.WorkOutDataRepository;
 import com.healthup.project.service.SleepService;
-
-
+import com.healthup.project.service.WorkOutService;
 
 @Controller
-@RequestMapping("/sleep")
-public class SleepController {
+@RequestMapping("/workout")
+public class WorkOutController {
 	@Autowired
-	SleepDataRepository sleepDataRepository;
+	WorkOutDataRepository workOutDataRepository;
+
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
-	SleepService sleepService;
+	WorkOutService workOutService;
 	@Autowired
 	EntityManager em;
 
@@ -58,11 +57,9 @@ public class SleepController {
 	} 
 	
 	@GetMapping("/chart")
-	public String eatChart(HttpSession session,Model model,@PageableDefault(sort = "sid", direction = Sort.Direction.DESC) Pageable pageable) {
-
+	public String eatChart(Model model,@PageableDefault(sort = "wid", direction = Sort.Direction.DESC) Pageable pageable,HttpSession session) {
 		String email = (String) session.getAttribute("userId");
-		String que = "SELECT ROUND(TIMESTAMPDIFF(MINUTE, todate, fromdate)/60) AS datime,createDate FROM SleepData WHERE email='"+email+"' ORDER BY createDate ASC";
-		
+		String que = "SELECT wo_kg AS kg,createDate FROM WorkOutData WHERE email="+"'"+email+"' ORDER BY createDate ASC";
 		Query query = em.createQuery(
 				que
 		// "SELECT eid,e_content,selectMeal,date_format(createDate,'%Y%m%d') AS
@@ -86,35 +83,26 @@ public class SleepController {
 		
 		model.addAttribute("chart1", r1);
 		model.addAttribute("chart2", r2);
-		model.addAttribute("sleepList", sleepService.findSleepList(pageable));
-		return "sleep/chart";
+		model.addAttribute("workOutList", workOutService.findWorkOutList(pageable));
+		return "workout/chart";
 
 	}
 
 	@PostMapping("/insert")
 	@ResponseBody
-	public ResponseEntity<SleepData> postEating(HttpSession session, @RequestBody SleepData sleepData) {
+	public ResponseEntity<WorkOutData> postEating(HttpSession session, @RequestBody WorkOutData workOutData) {
 		System.out.println("post request");
-		System.out.println(sleepData.toString());
+		System.out.println(workOutData.toString());
 		String email = (String) session.getAttribute("userId");
-		sleepData.setEmail(email);
-		sleepDataRepository.save(sleepData);
-		return new ResponseEntity<SleepData>(sleepData, HttpStatus.CREATED);
+		workOutData.setEmail(email);
+		workOutDataRepository.save(workOutData);
+		return new ResponseEntity<WorkOutData>(workOutData, HttpStatus.CREATED);
 
 	}
 
-	@GetMapping("/list")
-	public String getList(Model model,
-			@PageableDefault(sort = "sid", direction = Sort.Direction.DESC) Pageable pageable) {
-
-		model.addAttribute("sleepList", sleepService.findSleepList(pageable));
-
-		return "sleep/list";
-	}
-	
 	@GetMapping("/youtube")
 	public String get() {
-		return "sleep/data";
+		return "workout/data";
 	}
 
 }

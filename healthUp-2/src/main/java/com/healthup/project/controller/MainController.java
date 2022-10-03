@@ -29,6 +29,7 @@ public class MainController {
 	// 카카오로그인
 	@RequestMapping(value = "/login")
 	public ModelAndView login(@RequestParam("code") String code, HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
 
 		// 1. 인증코드 요청
@@ -49,7 +50,7 @@ public class MainController {
 		System.out.println("----------Token" + accessToken);
 
 		mav.addObject("userId", userInfo.get("email"));
-
+		
 		mav.setViewName("main");
 		return mav;
 	}

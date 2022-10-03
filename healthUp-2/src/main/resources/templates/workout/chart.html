@@ -43,7 +43,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="alert" role="alert" th:each="sleep:${sleepList}"
+							<!--  <tr class="alert" role="alert" th:each="sleep:${sleepList}"
 								style="text-align: center;">
 								<td><i class="fa fa-circle" aria-hidden="true"></i></td>
 								<td><a th:text="${sleep.sid}" name="sid" id="sid"
@@ -54,7 +54,7 @@
 									id="adult_num"></td>
 
 
-							</tr>
+							</tr>-->
 
 						</tbody>
 					</table>
@@ -70,7 +70,7 @@ var xValues = [[${chart2}]];
 var yValues = [[${chart1}]];
 
 new Chart("myChart", {
-  type: "bar",
+  type: "line",
   data: {
     labels: xValues,
     datasets: [{
@@ -84,9 +84,7 @@ new Chart("myChart", {
   options: {
     legend: {display: false},
     scales: {
-      yAxes: [{
-    	  
-    	  ticks: {min: 0, max:20}}],
+      yAxes: [{ticks: {min: 0, max:30000}}],
     }
   }
 });
