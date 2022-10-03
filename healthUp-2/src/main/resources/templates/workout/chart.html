@@ -17,7 +17,7 @@
 	<h1 class="mt-4">수면관리</h1>
 	<div class="card mb-4">
 		<div class="card-header">
-			<i class="fas fa-chart-area me-1"></i> 수면 시간 그래프
+			<i class="fas fa-chart-area me-1"></i> 운동량 그래프
 		</div>
 		<div class="card-body">
 			<canvas id="myChart" style="width: 100%; height: 30"></canvas>
@@ -28,7 +28,7 @@
 	<div class="row">
 		<div class="card mb-4">
 			<div class="card-header">
-				<i class="fas fa-chart-area me-1"></i> 수면 시간 확인
+				<i class="fas fa-chart-area me-1"></i>  운동량 체크
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -37,24 +37,24 @@
 							<tr style="text-align: center;">
 								<th>&nbsp;</th>
 								<th>ID</th>
-								<th>수면 시작 시간</th>
-								<th>수면 끝난 시간</th>
-								<th>입력 날짜</th>
+								<th>운동명</th>
+								<th>운동내용</th>
+								<th>운동량</th>
 							</tr>
 						</thead>
 						<tbody>
-							<!--  <tr class="alert" role="alert" th:each="sleep:${sleepList}"
+							  <tr class="alert" role="alert" th:each="workOut:${workOutList}"
 								style="text-align: center;">
 								<td><i class="fa fa-circle" aria-hidden="true"></i></td>
-								<td><a th:text="${sleep.wid}" name="wid" id="wid"
-									th:href="'/info?wid='+${sleep.wid}"></a></td>
-								<td th:text="${sleep.wo_kg}" name="wo_kg" id="wo_kg"></td>
-								<td th:text="${sleep.fromDate}" name="date" id="date"></td>
-								<td th:text="${sleep.createDate}" name="adult_num"
-									id="adult_num"></td>
+								<td><a th:text="${workOut.wid}" name="wid" id="wid"
+									th:href="'/info?wid='+${workOut.wid}"></a></td>
+								<td th:text="${workOut.wd_title}" name="wd_title" id="wd_title"></td>
+								<td th:text="${workOut.wd_content}" name="wd_content" id="wd_content"></td>
+								<td th:text="${workOut.wo_kg}" name="wo_kg"
+									id="wo_kg"></td>
 
 
-							</tr>-->
+							</tr>
 
 						</tbody>
 					</table>
