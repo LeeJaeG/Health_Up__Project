@@ -59,7 +59,7 @@ public class WorkOutController {
 	@GetMapping("/chart")
 	public String eatChart(Model model,@PageableDefault(sort = "wid", direction = Sort.Direction.DESC) Pageable pageable,HttpSession session) {
 		String email = (String) session.getAttribute("userId");
-		String que = "SELECT wo_kg AS kg,date_format(createDate,'%Y%m%d') AS date FROM WorkOutData WHERE email="+"'"+email+"' GROUP BY date ORDER BY createDate ASC";
+		String que = "SELECT wo_kg AS kg,date_format(createDate,'%Y%m%d') AS date FROM WorkOutData WHERE email='wlrmworms@naver.com' GROUP BY date ORDER BY createDate ASC";
 		Query query = em.createQuery(
 				que
 		// "SELECT eid,e_content,selectMeal,date_format(createDate,'%Y%m%d') AS
